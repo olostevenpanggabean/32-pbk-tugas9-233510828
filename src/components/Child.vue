@@ -20,10 +20,10 @@ onMounted(() => {
 </script> -->
 
 <!-- slot -->
-<template>
+<!-- <template>
   <div class="card">
     <h3>Child Component</h3>
-    <slot></slot> <!-- konten dari Parent akan muncul di sini -->
+    <slot></slot>
   </div>
 </template>
 
@@ -35,5 +35,23 @@ const slots = useSlots()
 
 onMounted(() => {
   console.log('[Child][Slot] slot default terdeteksi:', slots.default ? slots.default() : '—tidak ada—')
+})
+</script> -->
+
+<!-- emit -->
+<template>
+  <div>
+    <h3>Child Component</h3>
+  </div>
+</template>
+
+<script setup>
+import { onMounted } from 'vue'
+
+const emit = defineEmits(['haloDariChild'])
+
+onMounted(() => {
+  console.log('[Child][Emit] akan emit event `haloDariChild`')
+  emit('haloDariChild', 'Halo Parent, ini pesan otomatis dari Child!')
 })
 </script>

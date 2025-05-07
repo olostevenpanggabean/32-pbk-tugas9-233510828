@@ -19,11 +19,10 @@ onMounted(() => {
 </script> -->
  
 <!-- slot -->
-<template>
+<!-- <template>
   <div>
     <h2>Parent Component</h2>
     <Child>
-      <!-- ini konten slot -->
       <p>Ini konten dari Parent lewat slot.</p>
       <button @click="() => console.log('[Parent][Slot] tombol di slot diklik')">
         Klik Saya
@@ -34,5 +33,26 @@ onMounted(() => {
 
 <script setup>
 import Child from './components/Child.vue'
+</script> -->
+
+<!-- emit -->
+<template>
+  <div>
+    <h2>Parent Component</h2>
+    <Child @haloDariChild="tangkapEmit" />
+    <p>{{ pesanDariChild }}</p>
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+import Child from './components/Child.vue'
+
+const pesanDariChild = ref('')
+
+function tangkapEmit(pesan) {
+  console.log('[Parent][Emit] menerima event `haloDariChild` dengan payload:', pesan)
+  pesanDariChild.value = pesan
+}
 </script>
 
